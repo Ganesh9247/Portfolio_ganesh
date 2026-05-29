@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ganesh Prasad Chillapalli | Java Full Stack Developer Portfolio</title>
+    
+    <!-- Meta SEO Specifications -->
+    <meta name="description" content="Portfolio of Ganesh Prasad Chillapalli - Aspiring Java Full Stack Developer, Spring Boot Trainee, and Cloud Intern. Explore full stack applications, interactive live project previews, and certifications.">
+    <meta name="keywords" content="Ganesh Prasad Chillapalli, Java Full Stack, Spring Boot, React, Developer Portfolio, Mangalagiri, CSE Graduate">
+    <meta name="author" content="Ganesh Prasad Chillapalli">
+    
+    <!-- OpenGraph Metadata -->
+    <meta property="og:title" content="Ganesh Prasad Chillapalli | Portfolio">
+    <meta property="og:description" content="Java Full Stack Trainee portfolio showcasing modern Spring Boot, React, and AWS Cloud structures.">
+    <meta property="og:type" content="website">
+    
+    <!-- Core Style sheets -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/portfolio.css">
+</head>
+<body class="dark-mode">
+
+    <!-- Decorative background elements -->
+    <div class="glow-orb glow-orb-primary"></div>
+    <div class="glow-orb glow-orb-secondary"></div>
+
+    <!-- ==========================================================================
+       NAVIGATION LAYER
+       ========================================================================== -->
+    <header class="header-nav">
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                Ganesh <span>Full Stack</span>
+            </a>
+            
+            <nav class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#experience" class="nav-link">Timeline</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#certifications" class="nav-link">Certifications</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+            
+            <div class="nav-actions">
+                <button class="btn-icon" id="theme-toggle" title="Toggle Light/Dark Theme">
+                    <span>☀️</span>
+                </button>
+                <a href="dashboard.html" class="btn btn-primary" style="padding: 8px 16px; font-size: 0.85rem;" id="nav-admin-btn">
+                    <span>⚙️ Dashboard</span>
+                </a>
+                <div class="menu-toggle" id="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ==========================================================================
+           HERO SECTION
+           ========================================================================== */ -->
+        <section id="home" class="hero-section">
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-content">
+                        <div class="hero-tag">🚀 Ready to Innovate</div>
+                        <h1 class="hero-title">
+                            Hi, I'm <span class="text-gradient" data-field="name">Ganesh Prasad Chillapalli</span>
+                        </h1>
+                        <div class="hero-subtitle">
+                            Aspiring <span style="color: var(--primary); font-weight: 700;">Java Full Stack Trainee</span>
+                        </div>
+                        <p class="hero-desc" data-field="summary">
+                            Aspiring Java Full Stack Developer with basic foundational knowledge in Java, Spring Boot, HTML, CSS, and React. Recently completed hands-on training and academic projects focused on building responsive web applications and RESTful APIs. Quick learner with a passion for clean code, problem solving, and collaborative development in agile environments.
+                        </p>
+                        <div class="hero-cta">
+                            <button class="btn btn-primary download-resume-btn">
+                                <span>📄 Download Resume</span>
+                            </button>
+                            <a href="#projects" class="btn btn-secondary">
+                                <span>💻 View Projects</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-visual">
+                        <div class="mock-terminal glass-card animate-float">
+                            <div class="terminal-header">
+                                <div class="terminal-dot dot-red"></div>
+                                <div class="terminal-dot dot-yellow"></div>
+                                <div class="terminal-dot dot-green"></div>
+                                <div class="terminal-title">developer.java</div>
+                            </div>
+                            <div class="terminal-body">
+                                <p><span class="keyword">package</span> com.ganesh.portfolio;</p>
+                                <br>
+                                <p><span class="keyword">public class</span> <span class="type">DeveloperProfile</span> {</p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public static void</span> <span class="cmd">main</span>(String[] args) {</p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="type">Developer</span> me = <span class="keyword">new</span> <span class="type">Developer</span>();</p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;me.setName(<span class="string">"Ganesh Prasad Chillapalli"</span>);</p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;me.setRole(<span class="string">"Java Full Stack Developer"</span>);</p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;me.setSkills(<span class="keyword">new</span> String[] {</p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Java"</span>, <span class="string">"Spring Boot"</span>, <span class="string">"ReactJS"</span>, <span class="string">"MySQL"</span>, <span class="string">"AWS"</span></p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});</p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;me.setPassion(<span class="string">"Clean Code & Problem Solving"</span>);</p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(me.getWelcomeMessage());</p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+                                <p>}</p>
+                                <br>
+                                <p class="comment">// Output: Building responsive systems that scale...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           ABOUT & STATS SECTION
+           ========================================================================== -->
+        <section id="about" class="stats-section">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="glass-card stat-card">
+                        <div class="stat-num" id="stat-gpa">8.0</div>
+                        <div class="stat-label">B.Tech Graduation CGPA</div>
+                    </div>
+                    <div class="glass-card stat-card">
+                        <div class="stat-num" id="stat-projects">3+</div>
+                        <div class="stat-label">Core Dynamic Projects</div>
+                    </div>
+                    <div class="glass-card stat-card">
+                        <div class="stat-num" id="stat-certificates">6</div>
+                        <div class="stat-label">Technical Certifications</div>
+                    </div>
+                    <div class="glass-card stat-card">
+                        <div class="stat-num" id="stat-experience">Trainee</div>
+                        <div class="stat-label">Professional Experience</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           SKILLS MATRIX
+           ========================================================================== -->
+        <section id="skills" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Expertise</span>
+                    <h2 class="section-title">Technical Skillset</h2>
+                    <p class="section-desc">Extensive core stack learned through formal Java Full Stack traineeships and AWS DevOps courses.</p>
+                </div>
+                
+                <div class="skills-tabs">
+                    <button class="skill-tab-btn active" data-filter="all">All Stack</button>
+                    <button class="skill-tab-btn" data-filter="backend">Backend & Database</button>
+                    <button class="skill-tab-btn" data-filter="frontend">Frontend & Styling</button>
+                    <button class="skill-tab-btn" data-filter="tools">Development Tools</button>
+                </div>
+                
+                <div class="skills-content">
+                    <!-- Java -->
+                    <div class="glass-card skill-card" data-category="backend">
+                        <div class="skill-info">
+                            <span class="skill-name">Java SE & OOP Principles</span>
+                            <span class="skill-percent">85%</span>
+                        </div>
+                        <div class="skill-progress-bg">
+                            <div class="skill-progress-bar" data-level="85%"></div>
+                        </div>
+                    </div>
+                    <!-- Spring Boot -->
+                    <div class="glass-card skill-card" data-category="backend">
+                        <div class="skill-info">
+                            <span class="skill-name">Spring Boot & JPA</span>
+                            <span class="skill-percent">80%</span>
+                        </div>
+                        <div class="skill-progress-bg">
+                            <div class="skill-progress-bar" data-level="80%"></div>
+                        </div>
+                    </div>
+                    <!-- MySQL -->
+                    <div class="glass-card skill-card" data-category="backend">
+                        <div class="skill-info">
+                            <span class="skill-name">SQL (MySQL & PostgreSQL)</span>
+                            <span class="skill-percent">75%</span>
+                        </div>
+                        <div class="skill-progress-bg">
+                            <div class="skill-progress-bar" data-level="75%"></div>
+                        </div>
+                    </div>
+                    <!-- React.JS -->
+                    <div class="glass-card skill-card" data-category="frontend">
+                        <div class="skill-info">
+                            <span class="skill-name">React.js & Router</span>
+                            <span class="skill-percent">75%</span>
+                        </div>
+                        <div class="skill-progress-bg">
+                            <div class="skill-progress-bar" data-level="75%"></div>
+                        </div>
+                    </div>
+                    <!-- HTML/CSS -->
+                    <div class="glass-card skill-card" data-category="frontend">
+                        <div class="skill-info">
+                            <span class="skill-name">HTML5, CSS3, Tailwind CSS</span>
+                            <span class="skill-percent">90%</span>
+                        </div>
+                        <div class="skill-progress-bg">
+                            <div class="skill-progress-bar" data-level="90%"></div>
+                        </div>
+                    </div>
+                    <!-- Node/Express -->
+                    <div class="glass-card skill-card" data-category="backend">
+                        <div class="skill-info">
+                            <span class="skill-name">Node.js & MongoDB</span>
+                            <span class="skill-percent">65%</span>
+                        </div>
+                        <div class="skill-progress-bg">
+                            <div class="skill-progress-bar" data-level="65%"></div>
+                        </div>
+                    </div>
+                    <!-- API Design -->
+                    <div class="glass-card skill-card" data-category="tools">
+                        <div class="skill-info">
+                            <span class="skill-name">RESTful APIs & Postman</span>
+                            <span class="skill-percent">80%</span>
+                        </div>
+                        <div class="skill-progress-bg">
+                            <div class="skill-progress-bar" data-level="80%"></div>
+                        </div>
+                    </div>
+                    <!-- Version Control -->
+                    <div class="glass-card skill-card" data-category="tools">
+                        <div class="skill-info">
+                            <span class="skill-name">Git & GitHub Pipelines</span>
+                            <span class="skill-percent">85%</span>
+                        </div>
+                        <div class="skill-progress-bg">
+                            <div class="skill-progress-bar" data-level="85%"></div>
+                        </div>
+                    </div>
+                    <!-- AWS -->
+                    <div class="glass-card skill-card" data-category="tools">
+                        <div class="skill-info">
+                            <span class="skill-name">AWS Cloud & DevOps Essentials</span>
+                            <span class="skill-percent">70%</span>
+                        </div>
+                        <div class="skill-progress-bg">
+                            <div class="skill-progress-bar" data-level="70%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           TIMELINE SECTION (EXPERIENCE & EDUCATION)
+           ========================================================================== -->
+        <section id="experience" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">History</span>
+                    <h2 class="section-title">Experience & Education</h2>
+                    <p class="section-desc">My academic and hands-on industrial internship trajectory.</p>
+                </div>
+                
+                <div class="timeline-container">
+                    <!-- Codegnan -->
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="glass-card timeline-card">
+                            <div class="timeline-header">
+                                <div class="sidebar-name-wrapper">
+                                    <h3 class="timeline-role">Trainee, Java Full Stack</h3>
+                                    <span class="timeline-company">Codegnan</span>
+                                </div>
+                                <span class="timeline-date">Vijayawada, AP</span>
+                            </div>
+                            <div class="timeline-desc">
+                                <ul>
+                                    <li>Completed structured classroom and laboratory syllabus covering standard J2SE, J2EE, Hibernate, and MVC spring structures.</li>
+                                    <li>Gained proficiency in mapping relational structures with JPA and deploying databases.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Data Valley -->
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="glass-card timeline-card">
+                            <div class="timeline-header">
+                                <div class="sidebar-name-wrapper">
+                                    <h3 class="timeline-role">INTERN, Cloud & Devops Engineer</h3>
+                                    <span class="timeline-company">Data Valley</span>
+                                </div>
+                                <span class="timeline-date">Vijayawada, AP</span>
+                            </div>
+                            <div class="timeline-desc">
+                                <ul>
+                                    <li>Configured, deployed, and managed compute servers on AWS platforms (EC2, S3, RDS).</li>
+                                    <li>Engaged in setting up local networks, and monitoring server health indicators.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- IIDT -->
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="glass-card timeline-card">
+                            <div class="timeline-header">
+                                <div class="sidebar-name-wrapper">
+                                    <h3 class="timeline-role">INTERN, Web-Development & Full-Stack</h3>
+                                    <span class="timeline-company">IIDT_Black Buck</span>
+                                </div>
+                                <span class="timeline-date">Remote</span>
+                            </div>
+                            <div class="timeline-desc">
+                                <ul>
+                                    <li>Designed backend MVC elements in Spring Boot to map endpoint communications.</li>
+                                    <li>Connected structured SQL schemas and verified integrity protocols.</li>
+                                    <li>Formulated frontends inside React.js modules, verifying states and handling routes.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MVR College -->
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="glass-card timeline-card">
+                            <div class="timeline-header">
+                                <div class="sidebar-name-wrapper">
+                                    <h3 class="timeline-role">Bachelors Of Technology (CSE)</h3>
+                                    <span class="timeline-company">MVR College of Engineering and Technology</span>
+                                </div>
+                                <span class="timeline-date">2021 – 2025</span>
+                            </div>
+                            <div class="timeline-desc">
+                                <p>Major: Computer Science and Engineering | CGPA: <strong>8.0 / 10</strong></p>
+                                <p>Paritala, Andhra Pradesh, India</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Narayana College -->
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="glass-card timeline-card">
+                            <div class="timeline-header">
+                                <div class="sidebar-name-wrapper">
+                                    <h3 class="timeline-role">Board of Intermediate Education (MPC)</h3>
+                                    <span class="timeline-company">Narayana Junior College</span>
+                                </div>
+                                <span class="timeline-date">2019 – 2021</span>
+                            </div>
+                            <div class="timeline-desc">
+                                <p>Stream: MPC | Score: <strong>82.6%</strong></p>
+                                <p>Mangalagiri, Andhra Pradesh, India</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           PROJECTS GRID
+           ========================================================================== -->
+        <section id="projects" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Portfolio</span>
+                    <h2 class="section-title">Academic & Live Projects</h2>
+                    <p class="section-desc">Click on live site buttons to inspect deployments instantly.</p>
+                </div>
+                
+                <div class="projects-grid">
+                    <!-- Project 1 -->
+                    <div class="glass-card project-card">
+                        <div class="project-preview">
+                            <div class="project-preview-bg"></div>
+                            <div class="project-icon">🏗️</div>
+                            <span class="project-badge">Live React System</span>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">3D Construction Model Generator</h3>
+                            <p class="project-desc">A full-stack construction platform utilizing a React.js client interface mapping to a dynamic database system for structural designs and parameters.</p>
+                            <div class="project-tags">
+                                <span>ReactJS</span>
+                                <span>NodeJS</span>
+                                <span>MySQL</span>
+                                <span>API Design</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://track3dai.netlify.app/" target="_blank" class="btn btn-primary" style="flex: 1; padding: 10px 14px; font-size: 0.85rem;">
+                                    <span>🌐 Live Site</span>
+                                </a>
+                                <a href="https://github.com/Ganesh9247/track3dai" target="_blank" class="btn btn-secondary" style="padding: 10px 14px; font-size: 0.85rem;">
+                                    <span>Code</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 2 -->
+                    <div class="glass-card project-card">
+                        <div class="project-preview">
+                            <div class="project-preview-bg"></div>
+                            <div class="project-icon">👥</div>
+                            <span class="project-badge">Backend MVC API</span>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Employee Management System (EMS)</h3>
+                            <p class="project-desc">Enterprise-style Spring Boot CRUD application structuring organizational records, mapping dependencies, and providing endpoints tested with Postman.</p>
+                            <div class="project-tags">
+                                <span>Java SE</span>
+                                <span>Spring Boot</span>
+                                <span>MySQL</span>
+                                <span>Maven</span>
+                                <span>RESTful API</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/Ganesh9247/ems_EmployeeManagementSystem_2026" target="_blank" class="btn btn-primary" style="flex: 1; padding: 10px 14px; font-size: 0.85rem;">
+                                    <span>🐙 Repository Code</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="glass-card project-card">
+                        <div class="project-preview">
+                            <div class="project-preview-bg"></div>
+                            <div class="project-icon">🚗</div>
+                            <span class="project-badge">Responsive Clone</span>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Toyota Portal Landing Clone</h3>
+                            <p class="project-desc">Clean frontend implementation cloning the aesthetics of Toyota's page hierarchy, optimizing CSS transitions, and implementing responsive layouts.</p>
+                            <div class="project-tags">
+                                <span>HTML5</span>
+                                <span>CSS3</span>
+                                <span>MySQL Integration</span>
+                                <span>Responsive</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://toyota-com-ten.vercel.app/" target="_blank" class="btn btn-primary" style="flex: 1; padding: 10px 14px; font-size: 0.85rem;">
+                                    <span>🌐 Live Site</span>
+                                </a>
+                                <a href="https://github.com/Ganesh9247/TOYOTA.COM" target="_blank" class="btn btn-secondary" style="padding: 10px 14px; font-size: 0.85rem;">
+                                    <span>Code</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           CERTIFICATIONS
+           ========================================================================== -->
+        <section id="certifications" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Verification</span>
+                    <h2 class="section-title">Certificates & Badges</h2>
+                    <p class="section-desc">Accredited coursework and specialization pipelines completed.</p>
+                </div>
+                
+                <div class="skills-tabs" style="margin-bottom: 30px;">
+                    <button class="skill-tab-btn active" data-filter="all">All Certs</button>
+                    <button class="skill-tab-btn" data-filter="fullstack">Full Stack & Dev</button>
+                    <button class="skill-tab-btn" data-filter="cloud">Cloud & Data Science</button>
+                </div>
+                
+                <div class="certs-grid">
+                    <!-- Codegnan -->
+                    <div class="glass-card cert-card" data-category="fullstack">
+                        <div class="cert-icon">🎓</div>
+                        <div class="cert-details">
+                            <span class="cert-name">Java Full Stack Diploma</span>
+                            <span class="cert-org">Codegnan Institute</span>
+                        </div>
+                    </div>
+                    
+                    <!-- ExcelR -->
+                    <div class="glass-card cert-card" data-category="cloud">
+                        <div class="cert-icon">📊</div>
+                        <div class="cert-details">
+                            <span class="cert-name">Data Science & ML Suite</span>
+                            <span class="cert-org">ExcelR Solutions</span>
+                        </div>
+                    </div>
+
+                    <!-- Python -->
+                    <div class="glass-card cert-card" data-category="fullstack">
+                        <div class="cert-icon">🐍</div>
+                        <div class="cert-details">
+                            <span class="cert-name">Python Technologies Core</span>
+                            <span class="cert-org">ExcelR Solutions</span>
+                        </div>
+                    </div>
+
+                    <!-- AI -->
+                    <div class="glass-card cert-card" data-category="cloud">
+                        <div class="cert-icon">🤖</div>
+                        <div class="cert-details">
+                            <span class="cert-name">Artificial Intelligence Badge</span>
+                            <span class="cert-org">AIRBACLABS</span>
+                        </div>
+                    </div>
+
+                    <!-- IIDT Web -->
+                    <div class="glass-card cert-card" data-category="fullstack">
+                        <div class="cert-icon">🌐</div>
+                        <div class="cert-details">
+                            <span class="cert-name">Advanced Web-Development</span>
+                            <span class="cert-org">IIDT BLACK BUCKS</span>
+                        </div>
+                    </div>
+
+                    <!-- AWS Data Valley -->
+                    <div class="glass-card cert-card" data-category="cloud">
+                        <div class="cert-icon">☁️</div>
+                        <div class="cert-details">
+                            <span class="cert-name">AWS Cloud & Devops Technology</span>
+                            <span class="cert-org">Data Valley Engineering</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           CONTACT FORM
+           ========================================================================== -->
+        <section id="contact" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Communication</span>
+                    <h2 class="section-title">Get In Touch</h2>
+                    <p class="section-desc">Have a question or looking to hire? Drop me a message below.</p>
+                </div>
+                
+                <div class="contact-layout">
+                    <div class="contact-info-list">
+                        <!-- Email -->
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">✉️</div>
+                            <div class="contact-info-content">
+                                <h4>Email Me</h4>
+                                <p><a href="mailto:Chillapallirajababu620@gmail.com" data-field="email">Chillapallirajababu620@gmail.com</a></p>
+                            </div>
+                        </div>
+                        
+                        <!-- Phone -->
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">📞</div>
+                            <div class="contact-info-content">
+                                <h4>Call Me</h4>
+                                <p><a href="tel:7013350830" data-field="phone">7013350830</a></p>
+                            </div>
+                        </div>
+
+                        <!-- Location -->
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">📍</div>
+                            <div class="contact-info-content">
+                                <h4>Location</h4>
+                                <p data-field="location">Mangalagiri, Andhra Pradesh, India</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card">
+                        <form class="contact-form" id="contactForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="contactName">Your Name</label>
+                                    <input type="text" id="contactName" class="form-control" placeholder="John Doe" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactEmail">Your Email</label>
+                                    <input type="email" id="contactEmail" class="form-control" placeholder="john@example.com" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactSubject">Subject</label>
+                                <input type="text" id="contactSubject" class="form-control" placeholder="Job Opportunity / Project Inquiry" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactMessage">Message Details</label>
+                                <textarea id="contactMessage" class="form-control" placeholder="Hi Ganesh, I would love to connect..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary submit-btn">
+                                <span>✉️ Send Message</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==========================================================================
+       FOOTER SECTION
+       ========================================================================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-socials">
+                    <a href="https://www.linkedin.com/in/ganesh-chillapalli" target="_blank" class="footer-social-link" data-field="linkedin" title="LinkedIn">in</a>
+                    <a href="https://github.com/Ganesh9247" target="_blank" class="footer-social-link" data-field="github" title="GitHub">git</a>
+                </div>
+                <p class="footer-copy">&copy; 2026 Ganesh Prasad Chillapalli. Handcrafted, premium dashboard portfolio.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast elements -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Application scripts -->
+    <script src="js/db.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

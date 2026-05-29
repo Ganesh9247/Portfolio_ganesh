@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ganesh Prasad Chillapalli | Developer Management Dashboard</title>
+    
+    <!-- Core Style sheets -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="dashboard-body dark-mode">
+
+    <!-- Decorative background elements -->
+    <div class="glow-orb glow-orb-primary" style="opacity: 0.1;"></div>
+    <div class="glow-orb glow-orb-secondary" style="opacity: 0.1;"></div>
+
+    <div class="dashboard-wrapper">
+        <!-- ==========================================================================
+           SIDEBAR COMPONENT
+           ========================================================================== -->
+        <aside class="sidebar">
+            <div class="sidebar-profile">
+                <div class="sidebar-avatar">G</div>
+                <div class="sidebar-name-wrapper">
+                    <span class="sidebar-name">Ganesh Prasad</span>
+                    <span class="sidebar-role">Java Full Stack</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-menu">
+                <div class="sidebar-item active" data-panel="overview">
+                    <span class="sidebar-icon">📊</span>
+                    <span>Overview</span>
+                </div>
+                <div class="sidebar-item" data-panel="editor">
+                    <span class="sidebar-icon">✍️</span>
+                    <span>Profile Editor</span>
+                </div>
+                <div class="sidebar-item" data-panel="uploader">
+                    <span class="sidebar-icon">📄</span>
+                    <span>Resume Manager</span>
+                </div>
+                <div class="sidebar-item" data-panel="inbox">
+                    <span class="sidebar-icon">📥</span>
+                    <span>Contact Inbox</span>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="sidebar-menu">
+                    <button class="sidebar-item" id="theme-toggle" style="width: 100%; border: none;">
+                        <span class="sidebar-icon">☀️</span>
+                        <span>Toggle Theme</span>
+                    </button>
+                    <a href="index.html" class="sidebar-item" style="color: var(--primary);">
+                        <span class="sidebar-icon">⬅️</span>
+                        <span>View Portfolio</span>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ==========================================================================
+           MAIN CONTENT AREA
+           ========================================================================== -->
+        <main class="main-content">
+            <!-- Header Section -->
+            <header class="dashboard-header">
+                <div class="header-title-section">
+                    <h1 class="header-title">Developer Hub</h1>
+                    <p class="header-subtitle">Welcome back! Manage your portfolio data and resume documents.</p>
+                </div>
+            </header>
+
+            <!-- ==========================================================================
+               TAB PANEL: OVERVIEW
+               ========================================================================== -->
+            <section class="dashboard-panel active" id="panel-overview">
+                <!-- Analytics Widgets -->
+                <div class="analytics-grid">
+                    <div class="glass-card analytic-card">
+                        <div class="analytic-header">
+                            <span class="analytic-title">Profile Page Views</span>
+                            <span class="analytic-icon" style="color: var(--primary);">👁️</span>
+                        </div>
+                        <span class="analytic-value" id="analytics-views">120</span>
+                        <div class="analytic-trend trend-up">▲ 12% increase this week</div>
+                    </div>
+                    
+                    <div class="glass-card analytic-card">
+                        <div class="analytic-header">
+                            <span class="analytic-title">Resume Downloads</span>
+                            <span class="analytic-icon" style="color: var(--secondary);">📥</span>
+                        </div>
+                        <span class="analytic-value" id="analytics-downloads">42</span>
+                        <div class="analytic-trend trend-up">▲ 8% download rate</div>
+                    </div>
+                    
+                    <div class="glass-card analytic-card">
+                        <div class="analytic-header">
+                            <span class="analytic-title">Form Submissions</span>
+                            <span class="analytic-icon" style="color: var(--success);">📧</span>
+                        </div>
+                        <span class="analytic-value" id="analytics-contacts">5</span>
+                        <div class="analytic-trend trend-up">▲ 3 unread messages</div>
+                    </div>
+                </div>
+
+                <!-- Traffic Chart Widget -->
+                <div class="glass-card chart-card">
+                    <div class="chart-header">
+                        <h3 class="modal-title">Portfolio Traffic Summary</h3>
+                        <span class="text-muted" style="font-size: 0.85rem;">Last 7 Days</span>
+                    </div>
+                    <div class="chart-container" id="traffic-chart">
+                        <!-- Chart bars render dynamically via admin.js -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==========================================================================
+               TAB PANEL: PROFILE EDITOR
+               ========================================================================== -->
+            <section class="dashboard-panel" id="panel-editor">
+                <div class="glass-card editor-section-card">
+                    <h3 class="editor-section-title">Update Personal Information</h3>
+                    <p class="text-muted" style="font-size: 0.9rem; margin-top: -10px;">Submitting this form changes the content on your main portfolio site instantly.</p>
+                    
+                    <form id="profileEditorForm" class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="edit-name">Developer Name</label>
+                                <input type="text" id="edit-name" class="form-control" placeholder="Ganesh Prasad Chillapalli" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-role">Headline Title</label>
+                                <input type="text" id="edit-role" class="form-control" placeholder="Java Full Stack Developer" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="edit-email">Public Email Address</label>
+                                <input type="email" id="edit-email" class="form-control" placeholder="Chillapallirajababu620@gmail.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-phone">Contact Number</label>
+                                <input type="text" id="edit-phone" class="form-control" placeholder="7013350830" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="edit-location">Primary Location</label>
+                                <input type="text" id="edit-location" class="form-control" placeholder="Mangalagiri, AP-India" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="edit-linkedin">LinkedIn Address Link</label>
+                                <input type="url" id="edit-linkedin" class="form-control" placeholder="https://linkedin.com/in/ganesh-chillapalli" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-github">GitHub Profile Link</label>
+                                <input type="url" id="edit-github" class="form-control" placeholder="https://github.com/Ganesh9247" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edit-summary">Profile Summary Narrative</label>
+                            <textarea id="edit-summary" class="form-control" required style="min-height: 140px;"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary submit-btn">
+                            <span>💾 Save Changes</span>
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- ==========================================================================
+               TAB PANEL: RESUME MANAGER
+               ========================================================================== -->
+            <section class="dashboard-panel" id="panel-uploader">
+                <div class="glass-card editor-section-card">
+                    <h3 class="editor-section-title">Upload & Host Your Resume</h3>
+                    <p class="text-muted" style="font-size: 0.9rem; margin-top: -10px;">Upload your official PDF resume file. This will be stored locally inside your browser database, replacing the default dynamic text resume during visitor downloads.</p>
+                    
+                    <div class="upload-zone" id="uploadZone">
+                        <span class="upload-icon">📤</span>
+                        <div class="sidebar-name-wrapper" style="text-align: center;">
+                            <h4 style="font-size: 1.1rem; margin-bottom: 6px;">Click or Drag Resume here</h4>
+                            <p class="text-muted" style="font-size: 0.85rem;">Supports PDF, DOC, or DOCX formats (Max size: 4MB)</p>
+                        </div>
+                        <input type="file" id="resumeFileInput" style="display: none;" accept=".pdf,.doc,.docx">
+                    </div>
+
+                    <div style="margin-top: 24px;">
+                        <h4 class="modal-title" style="font-size: 1.1rem; margin-bottom: 12px;">Current Hosted Document</h4>
+                        <div id="fileStatusContainer">
+                            <!-- Populated dynamically via admin.js -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==========================================================================
+               TAB PANEL: CONTACT INBOX
+               ========================================================================== -->
+            <section class="dashboard-panel" id="panel-inbox">
+                <div class="glass-card editor-section-card">
+                    <h3 class="editor-section-title">Incoming Inquiries</h3>
+                    <p class="text-muted" style="font-size: 0.9rem; margin-top: -10px;">Review contact messages sent by prospective employers and collaborators through your website form.</p>
+                    
+                    <div class="table-container">
+                        <table class="inbox-table">
+                            <thead>
+                                <tr>
+                                    <th>Status</th>
+                                    <th>Sender</th>
+                                    <th>Subject & Message</th>
+                                    <th>Received Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="inboxTableBody">
+                                <!-- Messages load dynamically via admin.js -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- ==========================================================================
+       MESSAGE DETAIL POPUP MODAL
+       ========================================================================== -->
+    <div class="modal-overlay" id="messageDetailModal">
+        <div class="modal-box">
+            <div class="modal-head">
+                <span class="modal-title" id="messageModalTitle">Message Details</span>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body" id="messageModalBody">
+                <!-- Loaded dynamically via admin.js -->
+            </div>
+            <div class="modal-foot">
+                <button class="btn btn-secondary" id="closeModalBtn">Close</button>
+                <button class="btn btn-primary" id="sendReplyBtn">✉️ Reply by Email</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast floating elements -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Script assets -->
+    <script src="js/db.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

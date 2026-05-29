@@ -1,0 +1,18 @@
+{
+  "name": "ganesh-portfolio",
+  "version": "1.0.0",
+  "description": "Premium Developer Portfolio & Dashboard for Ganesh Prasad Chillapalli",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx http-server -p 3000 -c-1"
+  },
+  "keywords": [
+    "portfolio",
+    "dashboard",
+    "spring-boot",
+    "react",
+    "java"
+  ],
+  "author": "Ganesh Prasad Chillapalli",
+  "license": "ISC"
+}
