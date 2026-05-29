@@ -343,10 +343,10 @@ function initResumeDownload() {
                 console.warn("IndexedDB fetch failed, falling back to dynamically generated resume.", err);
             }
 
-            // Fallback: Dynamically generate an elegant printable Text-based resume file
-            generateAndDownloadTextResume();
+            // Fallback: Dynamically generate a premium PDF-based resume file
+            generateAndDownloadPDFResume();
             incrementDownloadCounter();
-            showToast("Downloading generated resume...", "success");
+            showToast("Downloading PDF resume...", "success");
             resetDownloadButton(btn);
         });
     });
@@ -364,105 +364,301 @@ function incrementDownloadCounter() {
 }
 
 /**
- * Creates a clean, detailed text representation of Ganesh's resume as a download fallback.
+ * Creates a beautiful, highly structured PDF resume document on the fly using jsPDF.
  */
-function generateAndDownloadTextResume() {
+function generateAndDownloadPDFResume() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF('p', 'mm', 'a4');
     const profile = JSON.parse(localStorage.getItem("portfolio_profile") || JSON.stringify(DEFAULT_PROFILE));
+
+    // Styling constants
+    const COLOR_PRIMARY = [109, 40, 217];   // Deep Purple
+    const COLOR_SECONDARY = [71, 85, 105]; // Slate Gray
+    const COLOR_DARK = [15, 23, 42];       // Off Black
+    const COLOR_LIGHT = [226, 232, 240];   // Light Slate Gray (lines)
+
+    let y = 20;
+    const leftMargin = 15;
+    const contentWidth = 180;
+
+    // Helper to verify y boundaries and create a new page if necessary
+    function checkPageLimit(neededHeight) {
+        if (y + neededHeight > 280) {
+            doc.addPage();
+            y = 20;
+            return true;
+        }
+        return false;
+    }
+
+    // Helper to draw section header
+    function drawSectionHeader(title) {
+        checkPageLimit(15);
+        y += 5;
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(11);
+        doc.setTextColor(...COLOR_PRIMARY);
+        doc.text(title, leftMargin, y);
+        
+        y += 2;
+        doc.setDrawColor(...COLOR_LIGHT);
+        doc.setLineWidth(0.3);
+        doc.line(leftMargin, y, leftMargin + contentWidth, y);
+        y += 5;
+    }
+
+    // ==========================================
+    // 1. HEADER SECTION
+    // ==========================================
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(22);
+    doc.setTextColor(...COLOR_PRIMARY);
+    doc.text(profile.name, leftMargin, y);
     
-    const resumeText = `====================================================================
-GANESH PRASAD CHILLAPALLI - Java Full Stack Developer
-====================================================================
-Contact Info:
-📧 Email: ${profile.email}
-📞 Phone: ${profile.phone}
-📍 Location: ${profile.location}
-🔗 LinkedIn: ${profile.linkedin}
-🔗 GitHub: ${profile.github}
+    y += 7;
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+    doc.setTextColor(...COLOR_SECONDARY);
+    doc.text(profile.role, leftMargin, y);
 
---------------------------------------------------------------------
-SUMMARY
---------------------------------------------------------------------
-${profile.summary}
-
---------------------------------------------------------------------
-EDUCATION
---------------------------------------------------------------------
-* Bachelors of Technology (CSE) | CGPA: 8.0/10 | Period: 2021-2025
-  MVR College of Engineering and Technology, Paritala, AP
-  
-* Board of Intermediate Education (MPC) | CGPA: 82.6% | Period: 2019-2021
-  Narayana Junior College, Mangalagiri, AP
-
-* Board of Secondary Education | CGPA: 9.2/10 | Year: 2018-2019
-  Narayana English Medium School, Mangalagiri, AP
-
---------------------------------------------------------------------
-SKILLS MATRIX
---------------------------------------------------------------------
-* Languages: Java, HTML, CSS, Tailwind CSS, Bootstrap, JavaScript, React.js, Node.js, Express.js, C, Python
-* Databases: MySQL, MongoDB, PostgreSQL
-* Frameworks: Spring Boot, Spring Data JPA, Spring Security, Hibernate, Spring MVC, Node.js, Next.js, Redux
-* APIs: RESTful APIs, SOAP, GraphQL, Postman API Testing
-* Version Control: Git, GitHub
-* Cloud & Deployment: AWS, Vercel, Netlify, Render
-
---------------------------------------------------------------------
-PROFESSIONAL EXPERIENCE & INTERNSHIPS
---------------------------------------------------------------------
-* Trainee - Java Full Stack | Codegnan, Vijayawada
-* Intern - Cloud & DevOps Engineer | Data Valley, Vijayawada
-* Intern - Web Development & Full Stack (Remote) | International Institute of Digital Technologies (IIDT_Black Buck)
-  
-  Details & Accomplishments:
-  - Designed and developed enterprise backend services using Java, Spring Boot following MVC architecture.
-  - Built robust JSON REST APIs and integrated SQL databases with optimized queries.
-  - Implemented client features using React.js frontend structures.
-  - Applied OOP principles and clean-code practices within Agile workflows.
-
---------------------------------------------------------------------
-KEY COMPLETED PROJECTS
---------------------------------------------------------------------
-1. A 3D Model Generator for Construction Designs
-   - Tech: React.js, Node.js, MySQL
-   - Devised api-driven system for real-time visualization and analytics of construction data.
-   - Demo Link: https://track3dai.netlify.app/
-   - GitHub: https://github.com/Ganesh9247/track3dai
-
-2. Employee Management System (EMS)
-   - Tech: Java, Spring Boot, REST API, Maven, MySQL, Git, Postman
-   - Built layered MVC (Controller-Service-Repository) structure, testing CRUD actions completely with Postman.
-   - GitHub: https://github.com/Ganesh9247/ems_EmployeeManagementSystem_2026
-
-3. Toyota Clone Website
-   - Tech: HTML, CSS, MySQL
-   - Created clean, highly responsive layout mimicking Toyota's page hierarchy.
-   - Demo Link: https://toyota-com-ten.vercel.app/
-
---------------------------------------------------------------------
-CERTIFICATIONS
---------------------------------------------------------------------
-* Codegnan: Java Full Stack Trainee Certificate
-* ExcelR: Data Science and Machine Learning Certificate
-* Technologies: Python Developer Certificate
-* Airbaclabs: Artificial Intelligence Training
-* Data Valley: AWS Cloud Computing & DevOps Technology
-
-====================================================================
-Generated via Ganesh Prasad's Live Developer Dashboard Portfolio
-====================================================================`;
-
-    const blob = new Blob([resumeText], { type: "text/plain;charset=utf-8" });
-    const blobUrl = URL.createObjectURL(blob);
+    // Header Metadata Row
+    y += 8;
+    doc.setFontSize(8.5);
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(...COLOR_DARK);
     
-    const downloadAnchor = document.createElement("a");
-    downloadAnchor.href = blobUrl;
-    downloadAnchor.download = "Ganesh_Prasad_Chillapalli_Resume.txt";
+    const contactInfo = `Email: ${profile.email}  |  Phone: ${profile.phone}  |  Location: ${profile.location}`;
+    doc.text(contactInfo, leftMargin, y);
     
-    document.body.appendChild(downloadAnchor);
-    downloadAnchor.click();
+    y += 4;
+    const linkInfo = `LinkedIn: linkedin.com/in/ganesh-chillapalli  |  GitHub: github.com/Ganesh9247`;
+    doc.text(linkInfo, leftMargin, y);
+
+    y += 4;
+    doc.setDrawColor(...COLOR_PRIMARY);
+    doc.setLineWidth(0.8);
+    doc.line(leftMargin, y, leftMargin + contentWidth, y);
+    y += 6;
+
+    // ==========================================
+    // 2. PROFILE SUMMARY
+    // ==========================================
+    drawSectionHeader("SUMMARY");
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(9.5);
+    doc.setTextColor(...COLOR_DARK);
     
-    document.body.removeChild(downloadAnchor);
-    URL.revokeObjectURL(blobUrl);
+    const summaryLines = doc.splitTextToSize(profile.summary, contentWidth);
+    doc.text(summaryLines, leftMargin, y);
+    y += (summaryLines.length * 4.5);
+
+    // ==========================================
+    // 3. EDUCATION
+    // ==========================================
+    drawSectionHeader("EDUCATION");
+    
+    const eduList = [
+        {
+            role: "Bachelors Of Technology (Computer Science & Engineering)",
+            inst: "MVR College of Engineering and Technology, Paritala, AP",
+            date: "06/2021 – 06/2025",
+            desc: "STREAM : CSE | CGPA : 8.0/10"
+        },
+        {
+            role: "Board of Intermediate Education (MPC)",
+            inst: "Narayana Junior College, Mangalagiri, AP",
+            date: "06/2019 – 05/2021",
+            desc: "STREAM : MPC | CGPA : 82.6%"
+        },
+        {
+            role: "Board of Secondary Education (SSC)",
+            inst: "Narayana English Medium School, Mangalagiri, AP",
+            date: "06/2018",
+            desc: "CGPA : 9.2"
+        }
+    ];
+
+    eduList.forEach(edu => {
+        checkPageLimit(15);
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(9.5);
+        doc.setTextColor(...COLOR_DARK);
+        doc.text(edu.role, leftMargin, y);
+        
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(8.5);
+        doc.setTextColor(...COLOR_SECONDARY);
+        const dateWidth = doc.getTextWidth(edu.date);
+        doc.text(edu.date, leftMargin + contentWidth - dateWidth, y);
+
+        y += 4;
+        doc.setFont("helvetica", "oblique");
+        doc.setFontSize(9);
+        doc.setTextColor(...COLOR_DARK);
+        doc.text(edu.inst, leftMargin, y);
+
+        y += 4;
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(8.5);
+        doc.setTextColor(...COLOR_SECONDARY);
+        doc.text(edu.desc, leftMargin, y);
+        y += 6;
+    });
+
+    // ==========================================
+    // 4. SKILLS MATRIX
+    // ==========================================
+    drawSectionHeader("TECHNICAL SKILLS");
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(9);
+    
+    const skillCats = [
+        { cat: "Languages", list: "Java, HTML, CSS, Tailwind CSS, Bootstrap, JavaScript, ReactJS, NodeJS, ExpressJS, C, Python" },
+        { cat: "Databases", list: "MySQL, MongoDB, PostgreSQL" },
+        { cat: "Frameworks", list: "Spring Boot, Hibernate, Struts, JSF, Play, Spring MVC, Spring Security, Spring Data JPA" },
+        { cat: "APIs & Tools", list: "RESTful APIs, SOAP, GraphQL, Postman, MongoDB Compass, Git, GitHub" },
+        { cat: "Cloud Ops", list: "AWS (EC2, S3, RDS), Vercel, Netlify, Render" }
+    ];
+
+    skillCats.forEach(sc => {
+        checkPageLimit(8);
+        doc.setFont("helvetica", "bold");
+        doc.setTextColor(...COLOR_DARK);
+        doc.text(`• ${sc.cat}: `, leftMargin, y);
+        
+        const catWidth = doc.getTextWidth(`• ${sc.cat}: `);
+        doc.setFont("helvetica", "normal");
+        doc.setTextColor(...COLOR_SECONDARY);
+        
+        const lines = doc.splitTextToSize(sc.list, contentWidth - catWidth);
+        doc.text(lines, leftMargin + catWidth, y);
+        y += (lines.length * 4.5) + 1;
+    });
+
+    // ==========================================
+    // 5. WORK EXPERIENCE / INTERNSHIPS
+    // ==========================================
+    drawSectionHeader("PROFESSIONAL EXPERIENCE");
+    
+    const expList = [
+        {
+            role: "Trainee - Java Full Stack",
+            org: "Codegnan, Vijayawada, Andhra Pradesh",
+            date: "Hands-on Training Syllabus",
+            bullet: [
+                "Designed and developed backend services using Java and Spring Boot MVC architecture.",
+                "Built and verified JSON RESTful API endpoints for client-server communication.",
+                "Integrated MySQL databases utilizing JPA repositories and optimized query mappings."
+            ]
+        },
+        {
+            role: "Intern - Cloud & DevOps Engineer",
+            org: "Data Valley, Vijayawada, Andhra Pradesh",
+            date: "AWS Integration Intern",
+            bullet: [
+                "Configured secure network systems and structured cloud compute containers inside AWS.",
+                "Managed database storage architectures using Amazon S3, RDS, and EC2 systems."
+            ]
+        },
+        {
+            role: "Intern - Web-Development & Full-Stack",
+            org: "IIDT (Black Bucks), Remote",
+            date: "Web Developer Intern",
+            bullet: [
+                "Implemented interactive frontend designs utilizing modern React.js route frameworks.",
+                "Connected full stack components using REST communication and Git version control."
+            ]
+        }
+    ];
+
+    expList.forEach(exp => {
+        checkPageLimit(15);
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(9.5);
+        doc.setTextColor(...COLOR_DARK);
+        doc.text(exp.role, leftMargin, y);
+
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(8.5);
+        doc.setTextColor(...COLOR_SECONDARY);
+        const dWidth = doc.getTextWidth(exp.date);
+        doc.text(exp.date, leftMargin + contentWidth - dWidth, y);
+
+        y += 4.5;
+        doc.setFont("helvetica", "oblique");
+        doc.setFontSize(9);
+        doc.setTextColor(...COLOR_DARK);
+        doc.text(exp.org, leftMargin, y);
+        y += 4;
+
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(8.5);
+        doc.setTextColor(...COLOR_DARK);
+        
+        exp.bullet.forEach(b => {
+            const wrappedB = doc.splitTextToSize(b, contentWidth - 6);
+            checkPageLimit(wrappedB.length * 4.5 + 2);
+            doc.text("-", leftMargin + 2, y);
+            doc.text(wrappedB, leftMargin + 6, y);
+            y += (wrappedB.length * 4.5);
+        });
+        y += 2;
+    });
+
+    // ==========================================
+    // 6. PROJECTS
+    // ==========================================
+    drawSectionHeader("ACADEMIC & CORE PROJECTS");
+    
+    const projList = [
+        {
+            name: "A 3D Model Generator for Constructions Designs",
+            tech: "ReactJS, NodeJS, MySQL",
+            bullets: [
+                "Developed fullstack construction visualizer integrating React client dashboard with Node API controllers.",
+                "Implemented dynamic data models enabling real-time engineering metric calculations."
+            ]
+        },
+        {
+            name: "Employee Management System (EMS)",
+            tech: "Java, Spring Boot, REST API, Maven, MySQL, Git",
+            bullets: [
+                "Constructed enterprise-style MVC (Controller-Service-Repository) server system in Spring Boot.",
+                "Engineered complete secure CRUD endpoints completely mapped and tested using Postman."
+            ]
+        }
+    ];
+
+    projList.forEach(p => {
+        checkPageLimit(12);
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(9.5);
+        doc.setTextColor(...COLOR_DARK);
+        doc.text(p.name, leftMargin, y);
+        
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(8.5);
+        doc.setTextColor(...COLOR_SECONDARY);
+        const tWidth = doc.getTextWidth(`[${p.tech}]`);
+        doc.text(`[${p.tech}]`, leftMargin + contentWidth - tWidth, y);
+        y += 4.5;
+
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(8.5);
+        doc.setTextColor(...COLOR_DARK);
+        
+        p.bullets.forEach(b => {
+            const wrappedB = doc.splitTextToSize(b, contentWidth - 6);
+            checkPageLimit(wrappedB.length * 4.5 + 2);
+            doc.text("-", leftMargin + 2, y);
+            doc.text(wrappedB, leftMargin + 6, y);
+            y += (wrappedB.length * 4.5);
+        });
+        y += 2;
+    });
+
+    // Save compiled PDF
+    doc.save("Ganesh_Prasad_Chillapalli_Resume.pdf");
 }
 
 /* ==========================================================================
