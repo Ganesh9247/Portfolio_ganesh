@@ -264,37 +264,81 @@ function initContactForm() {
                 return;
             }
 
-            // Create message object
-            const newMessage = {
-                id: 'msg_' + Date.now(),
-                name,
-                email,
-                subject,
-                message,
-                timestamp: new Date().toISOString(),
-                unread: true
+            // Start sending sequence with visual loader
+            const submitBtn = contactForm.querySelector(".submit-btn");
+            const originalBtnContent = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<span>⏳ Sending...</span>`;
+
+            // Prep JSON payload for FormSubmit AJAX Endpoint
+            const payload = {
+                name: name,
+                email: email,
+                _subject: `Portfolio Message: ${subject}`,
+                message: message
             };
 
-            // Retrieve current inbox
-            let inbox = [];
+            // Retrieve profile data to fetch the active email target
+            let profile = { email: "Chillapallirajababu620@gmail.com" };
             try {
-                inbox = JSON.parse(localStorage.getItem("portfolio_inbox") || "[]");
-            } catch(e) {
-                inbox = [];
+                const storedProfile = localStorage.getItem("portfolio_profile");
+                if (storedProfile) profile = JSON.parse(storedProfile);
+            } catch (err) {
+                console.warn("Could not read profile, using default email target.");
             }
 
-            // Add new message
-            inbox.unshift(newMessage);
-            localStorage.setItem("portfolio_inbox", JSON.stringify(inbox));
+            // Send API call directly to Google Email inbox via FormSubmit API
+            fetch(`https://formsubmit.co/ajax/${profile.email}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(res => {
+                if (res.ok) {
+                    showToast("Message sent directly to Ganesh's Gmail inbox!", "success");
+                } else {
+                    throw new Error("API responded with an error");
+                }
+            })
+            .catch(err => {
+                console.error("Direct mail API failed, falling back to local storage:", err);
+                showToast("Message saved locally to your Admin Dashboard Inbox.", "warning");
+            })
+            .finally(() => {
+                // Ensure message is ALWAYS logged in local storage to preserve Dashboard features
+                const newMessage = {
+                    id: 'msg_' + Date.now(),
+                    name,
+                    email,
+                    subject,
+                    message,
+                    timestamp: new Date().toISOString(),
+                    unread: true
+                };
 
-            // Increment mock contact count
-            let stats = getStats();
-            stats.contacts = (stats.contacts || 0) + 1;
-            saveStats(stats);
+                let inbox = [];
+                try {
+                    inbox = JSON.parse(localStorage.getItem("portfolio_inbox") || "[]");
+                } catch(e) {
+                    inbox = [];
+                }
 
-            // UI feedback
-            showToast("Message sent! Ganesh will get back to you shortly.", "success");
-            contactForm.reset();
+                inbox.unshift(newMessage);
+                localStorage.setItem("portfolio_inbox", JSON.stringify(inbox));
+
+                // Update analytics views in localStorage
+                let stats = getStats();
+                stats.contacts = (stats.contacts || 0) + 1;
+                saveStats(stats);
+
+                // Reset submit controls and form elements
+                contactForm.reset();
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnContent;
+            });
         });
     }
 }
@@ -611,6 +655,14 @@ function generateAndDownloadPDFResume() {
     drawSectionHeader("ACADEMIC & CORE PROJECTS");
     
     const projList = [
+        {
+            name: "Weather Application | Personal Project",
+            tech: "HTML, CSS, JavaScript, OpenWeatherMap API",
+            bullets: [
+                "Designed and developed a responsive weather application that fetches and displays live weather info using RESTful APIs.",
+                "Integrated OpenWeatherMap API and asynchronous JavaScript (Fetch, async/await) for dynamic, real-time UI data updates."
+            ]
+        },
         {
             name: "A 3D Model Generator for Constructions Designs",
             tech: "ReactJS, NodeJS, MySQL",
