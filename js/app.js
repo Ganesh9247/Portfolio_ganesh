@@ -416,7 +416,7 @@ function generateAndDownloadPDFResume() {
     const profile = JSON.parse(localStorage.getItem("portfolio_profile") || JSON.stringify(DEFAULT_PROFILE));
 
     // Styling constants
-    const COLOR_PRIMARY = [109, 40, 217];   // Deep Purple
+    const COLOR_PRIMARY = [14, 165, 233];   // Sky Blue
     const COLOR_SECONDARY = [71, 85, 105]; // Slate Gray
     const COLOR_DARK = [15, 23, 42];       // Off Black
     const COLOR_LIGHT = [226, 232, 240];   // Light Slate Gray (lines)
