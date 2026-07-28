@@ -50,14 +50,24 @@ Ask me about a specific skill, such as **"Tell me about his Java experience"** o
 
     projects: `Here are Ganesh's core projects:
 
-1. **Weather Application** [Live Demo](https://reliable-daifuku-2bed8b.netlify.app/) | [Code](https://github.com/Ganesh9247/Weather_Application)
+1. **JobConnect Portal** [Live Demo](https://job-connect-39v6.onrender.com) | [Code](https://github.com/Ganesh9247/job_connect)
+   Full-stack career and recruitment platform with dynamic job searching and recruiter dashboards.
+2. **Weather Application** [Live Demo](https://reliable-daifuku-2bed8b.netlify.app/) | [Code](https://github.com/Ganesh9247/Weather_Application)
    Real-time weather tracking utilizing OpenWeatherMap REST API, Fetch, and async/await.
-2. **3D Model Construction Generator** [Live Demo](https://track3dai.netlify.app/) | [Code](https://github.com/Ganesh9247/track3dai)
+3. **3D Model Construction Generator** [Live Demo](https://track3dai.netlify.app/) | [Code](https://github.com/Ganesh9247/track3dai)
    React.js Client dashboard mapping to a Node.js database visualizer for structural designs.
-3. **Employee Management System (EMS)** [Code](https://github.com/Ganesh9247/ems_EmployeeManagementSystem_2026)
+4. **Employee Management System (EMS)** [Code](https://github.com/Ganesh9247/ems_EmployeeManagementSystem_2026)
    Enterprise Spring Boot MVC backend CRUD operations system.
 
-Ask me about any specific project (e.g., **"Tell me about the Weather App"** or **"What is the EMS project?"**)!`,
+Ask me about any specific project (e.g., **"Tell me about JobConnect"** or **"What is the Weather App?"**)!`,
+
+    project_jobconnect: `The **JobConnect Portal** is a modern, full-stack employment platform developed by Ganesh:
+
+• **Dual Dashboard Roles**: Distinct user journeys for Job Seekers (profile building, resume updates, vacancy applications) and Recruiters (job creation, candidate tracking).
+• **Tech Stack**: Frontend powered by React.js and Tailwind CSS; backend supported by Node.js/Express.js APIs and MongoDB database integration.
+• **Deployment**: Deployed live on Render.
+
+🔗 [Live Demo](https://job-connect-39v6.onrender.com)  |  [GitHub Repository](https://github.com/Ganesh9247/job_connect)`,
 
     project_weather: `The **Weather Application** is a responsive frontend web app developed by Ganesh:
 
@@ -367,6 +377,9 @@ function initCopilotWidget() {
         }
 
         // 4. Specific Projects
+        if (containsAny(["jobconnect", "job connect", "job portal", "render"])) {
+            return "project_jobconnect";
+        }
         if (containsAny(["weather", "weather app", "openweathermap", "forecast"])) {
             return "project_weather";
         }

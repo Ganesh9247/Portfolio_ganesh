@@ -85,6 +85,10 @@ function loadAnalytics() {
         console.warn("Using default stats");
     }
 
+    // Sync contacts with actual saved messages length
+    const inbox = getInbox();
+    stats.contacts = inbox.length;
+
     // Bind values to DOM
     const viewsEl = document.getElementById("analytics-views");
     const downloadsEl = document.getElementById("analytics-downloads");
@@ -93,6 +97,13 @@ function loadAnalytics() {
     if (viewsEl) viewsEl.textContent = stats.views;
     if (downloadsEl) downloadsEl.textContent = stats.downloads;
     if (contactsEl) contactsEl.textContent = stats.contacts;
+
+    // Sync unread count trend indicator
+    const unreadEl = document.querySelector(".analytic-card:nth-child(3) .analytic-trend");
+    if (unreadEl) {
+        const unreadCount = inbox.filter(msg => msg.unread).length;
+        unreadEl.textContent = `▲ ${unreadCount} unread message${unreadCount !== 1 ? 's' : ''}`;
+    }
 
     // Render Weekly CSS Bar Chart
     const chartContainer = document.getElementById("traffic-chart");
@@ -183,6 +194,35 @@ function loadProfileEditor() {
             // Sync Sidebar
             updateSidebarProfile(updatedData.name, updatedData.role);
             showToast("Profile details updated successfully!", "success");
+        });
+    }
+    
+    initNotificationSettings();
+}
+
+function initNotificationSettings() {
+    const settingsForm = document.getElementById("notificationSettingsForm");
+    if (settingsForm) {
+        const routingInput = document.getElementById("settings-sms-fallback");
+        const webhookInput = document.getElementById("settings-webhook");
+
+        // Load saved values
+        const savedRouting = localStorage.getItem("portfolio_sms_routing") || "whatsapp";
+        const savedWebhook = localStorage.getItem("portfolio_sms_webhook") || "";
+
+        if (routingInput) routingInput.value = savedRouting;
+        if (webhookInput) webhookInput.value = savedWebhook;
+
+        settingsForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const routing = routingInput ? routingInput.value : "whatsapp";
+            const webhook = webhookInput ? webhookInput.value.trim() : "";
+
+            localStorage.setItem("portfolio_sms_routing", routing);
+            localStorage.setItem("portfolio_sms_webhook", webhook);
+
+            showToast("Notification and SMS settings saved successfully!", "success");
         });
     }
 }

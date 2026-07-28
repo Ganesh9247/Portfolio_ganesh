@@ -82,6 +82,7 @@ function loadProfileData() {
 
     // Dynamic replacement in DOM elements with [data-field] attribute
     document.querySelectorAll("[data-field]").forEach(element => {
+        if (element.id === "typing-name") return; // Skip static mapping
         const field = element.getAttribute("data-field");
         if (data[field]) {
             if (element.tagName === "A" && field === "email") {
@@ -98,6 +99,9 @@ function loadProfileData() {
         }
     });
 
+    // Run dynamic typewriter for name
+    initTypewriter(data.name || DEFAULT_PROFILE.name);
+
     // Load stats in about section
     if (data.aboutStats) {
         for (const [statKey, statVal] of Object.entries(data.aboutStats)) {
@@ -105,6 +109,24 @@ function loadProfileData() {
             if (el) el.textContent = statVal;
         }
     }
+}
+
+// Typewriter animation controller
+function initTypewriter(profileName) {
+    const target = document.getElementById("typing-name");
+    if (!target) return;
+
+    let i = 0;
+    target.textContent = "";
+    
+    function type() {
+        if (i < profileName.length) {
+            target.textContent += profileName.charAt(i);
+            i++;
+            setTimeout(type, 75 + Math.random() * 50); // randomized intervals for humanized input
+        }
+    }
+    setTimeout(type, 350);
 }
 
 /* ==========================================================================
@@ -298,7 +320,13 @@ function initContactForm() {
             })
             .then(res => {
                 if (res.ok) {
-                    showToast("Message sent directly to Ganesh's Gmail inbox!", "success");
+                    const activated = localStorage.getItem("formsubmit_activated");
+                    if (!activated) {
+                        showToast(`Message sent! Check Gmail (${profile.email}) to activate forwarding.`, "warning");
+                        localStorage.setItem("formsubmit_activated", "true");
+                    } else {
+                        showToast(`Message sent directly to Gmail (${profile.email})!`, "success");
+                    }
                 } else {
                     throw new Error("API responded with an error");
                 }
@@ -333,6 +361,70 @@ function initContactForm() {
                 let stats = getStats();
                 stats.contacts = (stats.contacts || 0) + 1;
                 saveStats(stats);
+
+                // Dispatch to Custom SMS/Notification Webhook if configured
+                const customWebhook = localStorage.getItem("portfolio_sms_webhook");
+                if (customWebhook) {
+                    const webhookPayload = {
+                        name: name,
+                        email: email,
+                        subject: subject,
+                        message: message,
+                        formattedMessage: `New message from ${name} (${email}) about '${subject}': ${message}`
+                    };
+                    fetch(customWebhook, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(webhookPayload)
+                    }).catch(err => console.error("SMS/Push Webhook dispatch failed:", err));
+                }
+
+                // Dispatch direct background SMS notification to target phone number via Textbelt API
+                const cleanPhone = (profile.phone || "7013350830").replace(/\D/g, "");
+                fetch("https://textbelt.com/text", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: new URLSearchParams({
+                        phone: `+91${cleanPhone}`,
+                        message: `Portfolio Msg from ${name.substring(0, 15)}: ${subject.substring(0, 20)} - ${message.substring(0, 50)}`,
+                        key: "textbelt"
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        console.log("Direct SMS successfully dispatched to " + cleanPhone);
+                    } else {
+                        console.warn("Direct SMS dispatch skipped (daily limit reached):", data.error);
+                    }
+                })
+                .catch(err => console.error("Direct SMS background dispatch failed:", err));
+
+                // Trigger phone/client notification routing
+                const waText = `*New Portfolio Message*\n*From:* ${name}\n*Email:* ${email}\n*Subject:* ${subject}\n*Message:* ${message}`;
+                
+                const routingOption = localStorage.getItem("portfolio_sms_routing") || "whatsapp";
+                
+                if (routingOption === "whatsapp" || routingOption === "both") {
+                    const waUrl = `https://api.whatsapp.com/send?phone=91${cleanPhone}&text=${encodeURIComponent(waText)}`;
+                    showToast("Redirecting to WhatsApp to send message...", "success");
+                    setTimeout(() => {
+                        window.open(waUrl, "_blank");
+                    }, 1000);
+                }
+                
+                if (routingOption === "sms-link" || routingOption === "both") {
+                    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+                    const separator = isIOS ? ';' : '?';
+                    const smsText = `New Message from ${name} (${email}): ${subject} - ${message}`;
+                    const smsUrl = `sms:+91${cleanPhone}${separator}body=${encodeURIComponent(smsText)}`;
+                    
+                    const waitTime = routingOption === "both" ? 2200 : 1000;
+                    showToast("Opening native mobile SMS client...", "success");
+                    setTimeout(() => {
+                        window.open(smsUrl, "_blank");
+                    }, waitTime);
+                }
 
                 // Reset submit controls and form elements
                 contactForm.reset();

@@ -1,0 +1,19 @@
+Certificates Assets Directory
+=============================
+
+Place your original certificate files (images: PNG/JPG/JPEG, or PDF files) in this folder.
+Ensure the file names match the names defined in the certificates database (js/certificates.js):
+
+1. Web Development Course: web_dev_course.pdf
+2. Java Internship: java_internship.pdf
+3. Project Completion: project_completion.pdf
+4. Cloud & DevOps: cloud_devops.pdf
+5. Web Dev Internship: web_dev_internship.pdf
+6. Full Stack Internship: fullstack_internship.pdf
+7. Data Science Internship: data_science_internship.pdf
+8. TCS Interview Skills: tcs_interview_skills.pdf
+9. Full Stack Java Internship: fullstack_java_internship.pdf
+10. MERN Stack Workshop: mern_stack_workshop.pdf
+11. AI Workshop: ai_workshop.pdf
+12. Hackathon: hackathon_participation.pdf
+13. Java Full Stack Diploma: java_fullstack_diploma.pdf

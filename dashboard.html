@@ -178,6 +178,32 @@
                         </button>
                     </form>
                 </div>
+
+                <div class="glass-card editor-section-card" style="margin-top: 24px;">
+                    <h3 class="editor-section-title">SMS & Notification Settings</h3>
+                    <p class="text-muted" style="font-size: 0.9rem; margin-top: -10px;">Configure webhooks or fallbacks to get instant SMS, WhatsApp, or push notifications on your phone.</p>
+                    
+                    <form id="notificationSettingsForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="settings-sms-fallback">SMS Routing Option</label>
+                            <select id="settings-sms-fallback" class="form-control" style="background: var(--card-bg); color: var(--text-primary); border: 1px solid rgba(255,255,255,0.08); padding: 10px; border-radius: var(--radius-sm);">
+                                <option value="whatsapp">WhatsApp Redirection (Recommended)</option>
+                                <option value="sms-link">Native Mobile SMS Redirect</option>
+                                <option value="both">Both Redirections</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="settings-webhook">Custom SMS / Notification Webhook (Optional)</label>
+                            <input type="url" id="settings-webhook" class="form-control" placeholder="https://maker.ifttt.com/trigger/portfolio_message/with/key/... or Telegram/Zapier URL">
+                            <small class="text-muted" style="font-size: 0.78rem; display: block; margin-top: 4px;">Integrate with free services like <strong>IFTTT</strong>, <strong>Zapier</strong>, or <strong>Telegram Webhooks</strong> to deliver silent SMS/push notifications automatically.</small>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary submit-btn">
+                            <span>💾 Save Settings</span>
+                        </button>
+                    </form>
+                </div>
             </section>
 
             <!-- ==========================================================================

@@ -19,10 +19,12 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/portfolio.css">
     <link rel="stylesheet" href="css/copilot.css">
+    <link rel="stylesheet" href="css/certificates.css">
 </head>
 <body class="dark-mode">
 
     <!-- Decorative background elements -->
+    <canvas id="matrixCanvas" class="matrix-bg"></canvas>
     <div class="glow-orb glow-orb-primary"></div>
     <div class="glow-orb glow-orb-secondary"></div>
 
@@ -71,7 +73,7 @@
                     <div class="hero-content">
                         <div class="hero-tag">🚀 Ready to Innovate</div>
                         <h1 class="hero-title">
-                            Hi, I'm <span class="text-gradient" data-field="name">Ganesh Prasad Chillapalli</span>
+                            Hi, I'm <span class="text-gradient" id="typing-name" data-field="name"></span><span class="typing-cursor">|</span>
                         </h1>
                         <div class="hero-subtitle">
                             Aspiring <span style="color: var(--primary); font-weight: 700;">Java Full Stack Trainee</span>
@@ -384,6 +386,35 @@
                 </div>
                 
                 <div class="projects-grid">
+                    <!-- Project: JobConnect -->
+                    <div class="glass-card project-card">
+                        <div class="project-preview">
+                            <div class="project-preview-bg"></div>
+                            <div class="project-icon">💼</div>
+                            <span class="project-badge">Live Full-Stack Portal</span>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">JobConnect Portal</h3>
+                            <p class="project-desc">A full-featured career and recruitment platform with dynamic job searching, application processing, candidate profile builders, and dual dashboards for job seekers and recruiters.</p>
+                            <div class="project-tags">
+                                <span>ReactJS</span>
+                                <span>NodeJS</span>
+                                <span>ExpressJS</span>
+                                <span>MongoDB</span>
+                                <span>TailwindCSS</span>
+                                <span>RESTful API</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://job-connect-39v6.onrender.com" target="_blank" class="btn btn-primary" style="flex: 1; padding: 10px 14px; font-size: 0.85rem;">
+                                    <span>🌐 Live Site</span>
+                                </a>
+                                <a href="https://github.com/Ganesh9247/job_connect" target="_blank" class="btn btn-secondary" style="padding: 10px 14px; font-size: 0.85rem;">
+                                    <span>Code</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Project: Weather App -->
                     <div class="glass-card project-card">
                         <div class="project-preview">
@@ -497,74 +528,102 @@
         <!-- ==========================================================================
            CERTIFICATIONS
            ========================================================================== -->
+        <!-- ==========================================================================
+           CERTIFICATIONS & ACHIEVEMENTS SECTION (INTERACTIVE HIGH-FIDELITY)
+           ========================================================================== -->
         <section id="certifications" class="section">
             <div class="container">
+                <!-- Section Header -->
                 <div class="section-header">
-                    <span class="section-tag">Verification</span>
-                    <h2 class="section-title">Certificates & Badges</h2>
-                    <p class="section-desc">Accredited coursework and specialization pipelines completed.</p>
+                    <span class="section-tag">🏆 Certifications & Achievements</span>
+                    <h2 class="section-title">Credentials & Badges</h2>
+                    <p class="section-desc">A collection of certifications, internships, workshops, hackathons, and technical achievements that showcase my continuous learning and practical software development experience.</p>
                 </div>
-                
-                <div class="skills-tabs" style="margin-bottom: 30px;">
-                    <button class="skill-tab-btn active" data-filter="all">All Certs</button>
-                    <button class="skill-tab-btn" data-filter="fullstack">Full Stack & Dev</button>
-                    <button class="skill-tab-btn" data-filter="cloud">Cloud & Data Science</button>
-                </div>
-                
-                <div class="certs-grid">
-                    <!-- Codegnan -->
-                    <div class="glass-card cert-card" data-category="fullstack">
-                        <div class="cert-icon">🎓</div>
-                        <div class="cert-details">
-                            <span class="cert-name">Java Full Stack Diploma</span>
-                            <span class="cert-org">Codegnan Institute</span>
+
+                <!-- Animated Stats Dashboard -->
+                <div class="certs-stats-grid">
+                    <div class="certs-stat-card">
+                        <div class="certs-stat-icon">
+                            <i data-lucide="award"></i>
+                        </div>
+                        <div class="certs-stat-info">
+                            <span class="certs-stat-num" id="statTotal">0</span>
+                            <span class="certs-stat-label">Total Certificates</span>
                         </div>
                     </div>
                     
-                    <!-- ExcelR -->
-                    <div class="glass-card cert-card" data-category="cloud">
-                        <div class="cert-icon">📊</div>
-                        <div class="cert-details">
-                            <span class="cert-name">Data Science & ML Suite</span>
-                            <span class="cert-org">ExcelR Solutions</span>
+                    <div class="certs-stat-card">
+                        <div class="certs-stat-icon">
+                            <i data-lucide="briefcase"></i>
+                        </div>
+                        <div class="certs-stat-info">
+                            <span class="certs-stat-num" id="statInterns">0</span>
+                            <span class="certs-stat-label">Internships</span>
                         </div>
                     </div>
+                    
+                    <div class="certs-stat-card">
+                        <div class="certs-stat-icon">
+                            <i data-lucide="terminal"></i>
+                        </div>
+                        <div class="certs-stat-info">
+                            <span class="certs-stat-num" id="statWorkshops">0</span>
+                            <span class="certs-stat-label">Workshops</span>
+                        </div>
+                    </div>
+                    
+                    <div class="certs-stat-card">
+                        <div class="certs-stat-icon">
+                            <i data-lucide="trophy"></i>
+                        </div>
+                        <div class="certs-stat-info">
+                            <span class="certs-stat-num" id="statHackathons">0</span>
+                            <span class="certs-stat-label">Hackathons</span>
+                        </div>
+                    </div>
+                </div>
 
-                    <!-- Python -->
-                    <div class="glass-card cert-card" data-category="fullstack">
-                        <div class="cert-icon">🐍</div>
-                        <div class="cert-details">
-                            <span class="cert-name">Python Technologies Core</span>
-                            <span class="cert-org">ExcelR Solutions</span>
-                        </div>
+                <!-- Interactive Control Bar -->
+                <div class="certs-controls">
+                    <div class="certs-search-wrapper">
+                        <i data-lucide="search" class="certs-search-icon"></i>
+                        <input type="text" id="certsSearch" class="certs-search-input" placeholder="Search certificates by title, skills...">
                     </div>
+                    
+                    <div class="certs-filter-group">
+                        <select id="certsCategory" class="certs-select-control">
+                            <option value="all">All Categories</option>
+                            <option value="web-development">Web Development</option>
+                            <option value="internship">Internships</option>
+                            <option value="project">Projects</option>
+                            <option value="cloud-devops">Cloud & DevOps</option>
+                            <option value="full-stack">Full Stack</option>
+                            <option value="ai-ml">AI & Data Science</option>
+                            <option value="mern-stack">MERN Stack</option>
+                            <option value="artificial-intelligence">Artificial Intelligence</option>
+                            <option value="hackathon">Hackathons</option>
+                            <option value="fullstack-java">Full Stack Java</option>
+                            <option value="soft-skills">Soft Skills</option>
+                        </select>
+                        
+                        <select id="certsYear" class="certs-select-control">
+                            <option value="all">All Years</option>
+                            <option value="2026">2026</option>
+                            <option value="2025">2025</option>
+                            <option value="2024">2024</option>
+                            <option value="2022">2022</option>
+                        </select>
+                        
+                        <select id="certsSort" class="certs-select-control">
+                            <option value="newest">Newest First</option>
+                            <option value="oldest">Oldest First</option>
+                        </select>
+                    </div>
+                </div>
 
-                    <!-- AI -->
-                    <div class="glass-card cert-card" data-category="cloud">
-                        <div class="cert-icon">🤖</div>
-                        <div class="cert-details">
-                            <span class="cert-name">Artificial Intelligence Badge</span>
-                            <span class="cert-org">AIRBACLABS</span>
-                        </div>
-                    </div>
-
-                    <!-- IIDT Web -->
-                    <div class="glass-card cert-card" data-category="fullstack">
-                        <div class="cert-icon">🌐</div>
-                        <div class="cert-details">
-                            <span class="cert-name">Advanced Web-Development</span>
-                            <span class="cert-org">IIDT BLACK BUCKS</span>
-                        </div>
-                    </div>
-
-                    <!-- AWS Data Valley -->
-                    <div class="glass-card cert-card" data-category="cloud">
-                        <div class="cert-icon">☁️</div>
-                        <div class="cert-details">
-                            <span class="cert-name">AWS Cloud & Devops Technology</span>
-                            <span class="cert-org">Data Valley Engineering</span>
-                        </div>
-                    </div>
+                <!-- Dynamic Grid -->
+                <div class="certs-responsive-grid" id="certsGrid">
+                    <!-- Cards populated dynamically via js/certificates.js -->
                 </div>
             </div>
         </section>
@@ -663,10 +722,128 @@
     <!-- Toast elements -->
     <div id="toast" class="toast"></div>
 
+    <!-- ==========================================================================
+       LIGHTBOX PREVIEW MODAL
+       ========================================================================== -->
+    <div id="certLightbox" class="cert-lightbox-overlay">
+        <div class="cert-lightbox-container">
+            <button id="certLightboxClose" class="cert-lightbox-close" title="Close Overlay">&times;</button>
+            <button id="certLightboxFullscreen" class="cert-lightbox-fullscreen" title="Toggle Fullscreen">
+                <i data-lucide="maximize-2" style="width: 15px; height: 15px;"></i>
+            </button>
+            
+            <!-- Left Panel: Certificate Mockup page -->
+            <div class="cert-lightbox-mockup-panel">
+                <div class="cert-large-mockup">
+                    <div class="cert-large-guilloche"></div>
+                    <div class="cert-large-border-deco"></div>
+                    
+                    <div class="cert-large-header">
+                        <span class="cert-large-org-name" id="mockupOrg">Organization</span>
+                        <div class="cert-large-doc-type">CERTIFICATE OF ACHIEVEMENT</div>
+                    </div>
+                    
+                    <div class="cert-large-body">
+                        <span class="cert-large-recipient-sub">Presented to</span>
+                        <div class="cert-large-recipient-name">Ganesh Prasad Chillapalli</div>
+                        <p class="cert-large-desc">for outstanding commitment, academic diligence, and successful program completion.</p>
+                    </div>
+                    
+                    <div class="cert-large-footer">
+                        <div class="cert-large-sign-block">
+                            <span class="cert-large-signature">EdiGlobe</span>
+                            <div class="cert-large-sign-line"></div>
+                            <span class="cert-large-sign-title">Issuer Sign</span>
+                        </div>
+                        
+                        <div class="cert-large-seal-block">🏆</div>
+                        
+                        <div class="cert-large-sign-block">
+                            <span class="cert-large-signature">G. Prasad</span>
+                            <div class="cert-large-sign-line"></div>
+                            <span class="cert-large-sign-title">Academic Registrar</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Panel: Info Metadata -->
+            <div class="cert-lightbox-info-panel">
+                <div class="cert-info-category">
+                    <i data-lucide="award" style="width: 14px; height: 14px;"></i>
+                    <span id="lightboxCategory">Category</span>
+                </div>
+                
+                <h3 class="cert-info-title" id="lightboxTitle">Certificate Title</h3>
+                
+                <div class="cert-info-details-list">
+                    <div class="cert-info-item">
+                        <i data-lucide="building" class="cert-info-item-icon"></i>
+                        <div class="cert-info-item-content">
+                            <h5>Issuing Organization</h5>
+                            <p id="lightboxOrg">Organization Name</p>
+                        </div>
+                    </div>
+                    
+                    <div class="cert-info-item">
+                        <i data-lucide="calendar" class="cert-info-item-icon"></i>
+                        <div class="cert-info-item-content">
+                            <h5>Issue Year</h5>
+                            <p id="lightboxYear">Year</p>
+                        </div>
+                    </div>
+                    
+                    <div class="cert-info-item">
+                        <i data-lucide="shield-check" class="cert-info-item-icon"></i>
+                        <div class="cert-info-item-content">
+                            <h5>Credential ID</h5>
+                            <p id="lightboxCred" style="font-family: monospace; font-size: 0.85rem;">Cred ID</p>
+                        </div>
+                    </div>
+                    
+                    <div class="cert-info-item">
+                        <i data-lucide="info" class="cert-info-item-icon"></i>
+                        <div class="cert-info-item-content">
+                            <h5>Program Description</h5>
+                            <p id="lightboxDesc" style="font-size: 0.85rem; font-weight: normal; line-height: 1.4; color: var(--text-secondary);">Description text here.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="cert-info-item">
+                        <i data-lucide="check-square" class="cert-info-item-icon"></i>
+                        <div class="cert-info-item-content">
+                            <h5>Validated Technical Competence</h5>
+                            <div class="cert-info-skills" id="lightboxSkills">
+                                <!-- Skills populated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cert-lightbox-actions">
+                    <button class="btn btn-primary" onclick="downloadActiveCertPDF()">
+                        <i data-lucide="download" style="width: 15px; height: 15px;"></i>
+                        <span>Download PDF</span>
+                    </button>
+                    <a id="lightboxViewLink" href="#" target="_blank" class="btn btn-secondary" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+                        <i data-lucide="external-link" style="width: 15px; height: 15px;"></i>
+                        <span>View Original</span>
+                    </a>
+                    <button class="btn btn-secondary" onclick="closeLightbox()">
+                        <span>Close</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Application scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="js/matrix.js"></script>
     <script src="js/db.js"></script>
     <script src="js/app.js"></script>
     <script src="js/copilot.js"></script>
+    <script src="js/certificates.js"></script>
 </body>
 </html>

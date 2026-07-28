@@ -123,18 +123,49 @@ body {
     position: relative;
 }
 
-/* Grid overlay background decoration */
+/* Cyberpunk Grid overlay background decoration */
 body::before {
     content: '';
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: var(--accent-bg-dot);
-    background-size: 24px 24px;
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(rgba(14, 165, 233, 0.015) 1px, transparent 1px),
+                     linear-gradient(90deg, rgba(14, 165, 233, 0.015) 1px, transparent 1px);
+    background-size: 45px 45px;
     pointer-events: none;
-    z-index: 0;
+    z-index: -1;
+}
+
+/* Live Matrix Coding Background Canvas */
+.matrix-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2; /* behind everything */
+    opacity: 0.12; /* subtle coding background */
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+body.light-mode .matrix-bg {
+    opacity: 0.04; 
+}
+
+/* Typewriter Effect Caret */
+.typing-cursor {
+    color: var(--primary);
+    font-weight: 500;
+    margin-left: 4px;
+    animation: blink-caret 0.85s step-end infinite;
+}
+
+@keyframes blink-caret {
+    from, to { color: transparent }
+    50% { color: var(--primary); }
 }
 
 /* Background glowing orbs */

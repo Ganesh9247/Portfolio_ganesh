@@ -1,0 +1,7 @@
+Certificates Folder
+===================
+
+Place the following PDF files in this folder:
+1. internship-certificates.pdf
+2. ACE-Scanner.pdf
+3. Hackathon_codegnan_Certificate.pdf
